@@ -122,7 +122,4 @@ The email you receive will look like this:
 
 ## 👨‍💻 Author
 
-**Andy Amponsah**  
-
-
-```
+**Andy Amponsah** 
