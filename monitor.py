@@ -33,15 +33,16 @@ class SysAlert:
         except Exception as e:
             print("Failed to send alert:", str(e))
 
-    def check_metrics(self):
+    def check_metrics(self): #  check system metrics 
         """Check system metrics and send alert if thresholds are exceeded"""
-        cpu = psutil.cpu_percent(interval=1)
-        ram = psutil.virtual_memory().percent
+        cpu = psutil.cpu_percent(interval=1) # get cpu usage in percentage
+        ram = psutil.virtual_memory().percent # get ram usage in percentage
         disk = 100 - psutil.disk_usage('/').percent  # Free disk space
 
         alerts = []
 
-        if cpu > self.cpu_threshold:
+        # if usage is greater that set threashold
+        if cpu > self.cpu_threshold: 
             alerts.append(f"⚠️ CPU usage is high: {cpu}% (Threshold: {self.cpu_threshold}%)")
         if ram > self.ram_threshold:
             alerts.append(f"⚠️ RAM usage is high: {ram}% (Threshold: {self.ram_threshold}%)")
@@ -49,7 +50,7 @@ class SysAlert:
             alerts.append(f"⚠️ Disk space is low: {disk}% free (Threshold: {self.disk_threshold}% free)")
 
         if alerts:
-            self.send_alert("\n".join(alerts))
+            self.send_alert("\n".join(alerts)) # if there are alerts then send them
         else:
             print("✅ All system metrics are within normal range.")
 
