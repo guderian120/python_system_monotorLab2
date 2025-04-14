@@ -7,16 +7,16 @@ from dotenv import load_dotenv
 load_dotenv("/home/guderian/AMALITECH_GTP/LEARNING_RESOURCE/lab2_a/.env")
 
 class SysAlert:
-    def __init__(self):
+    def __init__(self): 
         # Thresholds from environment with defaults
-        self.cpu_threshold = float(os.getenv("CPU_THRESHOLD", 80))
-        self.ram_threshold = float(os.getenv("RAM_THRESHOLD", 80))
-        self.disk_threshold = float(os.getenv("DISK_THRESHOLD", 20))  # disk free space %
+        self.cpu_threshold = float(os.getenv("CPU_THRESHOLD", 2))
+        self.ram_threshold = float(os.getenv("RAM_THRESHOLD", 10))
+        self.disk_threshold = float(os.getenv("DISK_THRESHOLD", 50))  # disk free space %
 
         self.recipient_email = os.getenv("ALERT_RECIPIENT", "example@example.com")
         self.from_email = os.getenv("ALERT_FROM", "System Monitor <onboarding@resend.dev>")
         resend.api_key = os.getenv("RESEND_API_KEY")
-
+    # method to send alert if threshold exceeded
     def send_alert(self, message):
         """Send alert email using Resend API"""
         print("Sending alert...\n", message)
